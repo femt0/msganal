@@ -1,0 +1,215 @@
+<mat-tab-group>
+  <mat-tab label="Awards">
+	<div class="awards">
+		
+		<mat-card class="award-card" *ngIf="topMsg">
+		  <mat-card-header>
+		    <div mat-card-avatar class="avatar">🏆</div>
+		    <mat-card-title>Golden Award</mat-card-title>
+		    <mat-card-subtitle>Plus grand nombre de messages</mat-card-subtitle>
+		  </mat-card-header>
+		  <mat-divider></mat-divider>
+		  <mat-card-content>
+			<table mat-table [dataSource]="topMsg" class=".mat-elevation-z0 award-table">
+			  <!-- Position Column -->
+			  <ng-container matColumnDef="position">
+			    <th mat-header-cell *matHeaderCellDef> No. </th>
+			    <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+			  </ng-container>
+
+			  <!-- Name Column -->
+			  <ng-container matColumnDef="name">
+			    <th mat-header-cell *matHeaderCellDef> Nom </th>
+			    <td mat-cell *matCellDef="let element"><img src="{{element.imgurl}}"> {{element.name}} </td>
+			  </ng-container>
+
+			  <!-- Score Column -->
+			  <ng-container matColumnDef="score">
+			    <th mat-header-cell *matHeaderCellDef> Nombre de messages </th>
+			    <td mat-cell *matCellDef="let element"> {{element.cntmsg}} </td>
+			  </ng-container>
+
+			  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+			</table>
+		  </mat-card-content>
+		</mat-card>
+		
+		<mat-card class="award-card" *ngIf="topImg">
+		  <mat-card-header>
+		    <div mat-card-avatar class="avatar">📷</div>
+		    <mat-card-title>Photographe Award</mat-card-title>
+		    <mat-card-subtitle>Plus grand nombre d'images</mat-card-subtitle>
+		  </mat-card-header>
+		  <mat-divider></mat-divider>
+		  <mat-card-content>
+			<table mat-table [dataSource]="topImg" class=".mat-elevation-z0 award-table">
+			  <!-- Position Column -->
+			  <ng-container matColumnDef="position">
+			    <th mat-header-cell *matHeaderCellDef> No. </th>
+			    <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+			  </ng-container>
+
+			  <!-- Name Column -->
+			  <ng-container matColumnDef="name">
+			    <th mat-header-cell *matHeaderCellDef> Nom </th>
+			    <td mat-cell *matCellDef="let element"><img src="{{element.imgurl}}"> {{element.name}} </td>
+			  </ng-container>
+
+			  <!-- Score Column -->
+			  <ng-container matColumnDef="score">
+			    <th mat-header-cell *matHeaderCellDef> Nombre d'images </th>
+			    <td mat-cell *matCellDef="let element"> {{element.cntimg}} </td>
+			  </ng-container>
+
+			  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+			</table>
+		  </mat-card-content>
+		</mat-card>
+		
+		<mat-card class="award-card" *ngIf="topStk">
+		  <mat-card-header>
+		    <div mat-card-avatar class="avatar">🌅</div>
+		    <mat-card-title>Sticker Award</mat-card-title>
+		    <mat-card-subtitle>Plus grand nombre de stickers</mat-card-subtitle>
+		  </mat-card-header>
+		  <mat-divider></mat-divider>
+		  <mat-card-content>
+			<table mat-table [dataSource]="topStk" class=".mat-elevation-z0 award-table">
+			  <!-- Position Column -->
+			  <ng-container matColumnDef="position">
+			    <th mat-header-cell *matHeaderCellDef> No. </th>
+			    <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+			  </ng-container>
+
+			  <!-- Name Column -->
+			  <ng-container matColumnDef="name">
+			    <th mat-header-cell *matHeaderCellDef> Nom </th>
+			    <td mat-cell *matCellDef="let element"><img src="{{element.imgurl}}"> {{element.name}} </td>
+			  </ng-container>
+
+			  <!-- Score Column -->
+			  <ng-container matColumnDef="score">
+			    <th mat-header-cell *matHeaderCellDef> Nombre de stickers </th>
+			    <td mat-cell *matCellDef="let element"> {{element.cntstk}} </td>
+			  </ng-container>
+
+			  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+			</table>
+		  </mat-card-content>
+		</mat-card>
+
+		<mat-card class="award-card" *ngIf="topEmj">
+		  <mat-card-header>
+		    <div mat-card-avatar class="avatar">😁</div>
+		    <mat-card-title>Emoji Award</mat-card-title>
+		    <mat-card-subtitle>Plus grand nombre d'emojis</mat-card-subtitle>
+		  </mat-card-header>
+		  <mat-divider></mat-divider>
+		  <mat-card-content>
+			<table mat-table [dataSource]="topEmj" class=".mat-elevation-z0 award-table">
+			  <!-- Position Column -->
+			  <ng-container matColumnDef="position">
+			    <th mat-header-cell *matHeaderCellDef> No. </th>
+			    <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+			  </ng-container>
+
+			  <!-- Name Column -->
+			  <ng-container matColumnDef="name">
+			    <th mat-header-cell *matHeaderCellDef> Nom </th>
+			    <td mat-cell *matCellDef="let element"><img src="{{element.imgurl}}"> {{element.name}} </td>
+			  </ng-container>
+
+			  <!-- Score Column -->
+			  <ng-container matColumnDef="score">
+			    <th mat-header-cell *matHeaderCellDef> Nombre d'emojis </th>
+			    <td mat-cell *matCellDef="let element"> {{element.cntemj}} </td>
+			  </ng-container>
+
+			  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+			</table>
+		  </mat-card-content>
+		</mat-card>
+		
+		
+		<mat-card class="award-card" *ngIf="topAvgSize">
+		  <mat-card-header>
+		    <div mat-card-avatar class="avatar">📚</div>
+		    <mat-card-title>Romancier Award</mat-card-title>
+		    <mat-card-subtitle>Nombre moyen de caractères pas message le plus grand</mat-card-subtitle>
+		  </mat-card-header>
+		  <mat-divider></mat-divider>
+		  <mat-card-content>
+			<table mat-table [dataSource]="topAvgSize" class=".mat-elevation-z0 award-table">
+			  <!-- Position Column -->
+			  <ng-container matColumnDef="position">
+			    <th mat-header-cell *matHeaderCellDef> No. </th>
+			    <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+			  </ng-container>
+
+			  <!-- Name Column -->
+			  <ng-container matColumnDef="name">
+			    <th mat-header-cell *matHeaderCellDef> Nom </th>
+			    <td mat-cell *matCellDef="let element"><img src="{{element.imgurl}}"> {{element.name}} </td>
+			  </ng-container>
+
+			  <!-- Score Column -->
+			  <ng-container matColumnDef="score">
+			    <th mat-header-cell *matHeaderCellDef> Nombre de caractères moyen </th>
+			    <td mat-cell *matCellDef="let element"> {{element.avgsize}} </td>
+			  </ng-container>
+
+			  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+			</table>
+		  </mat-card-content>
+		</mat-card>
+		
+		<mat-card class="award-card" *ngIf="btmAvgSize">
+		  <mat-card-header>
+		    <div mat-card-avatar class="avatar">⚡️</div>
+		    <mat-card-title>Flash Award</mat-card-title>
+		    <mat-card-subtitle>Nombre moyen de caractères pas message le plus petit</mat-card-subtitle>
+		  </mat-card-header>
+		  <mat-divider></mat-divider>
+		  <mat-card-content>
+			<table mat-table [dataSource]="btmAvgSize" class=".mat-elevation-z0 award-table">
+			  <!-- Position Column -->
+			  <ng-container matColumnDef="position">
+			    <th mat-header-cell *matHeaderCellDef> No. </th>
+			    <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+			  </ng-container>
+
+			  <!-- Name Column -->
+			  <ng-container matColumnDef="name">
+			    <th mat-header-cell *matHeaderCellDef> Nom </th>
+			    <td mat-cell *matCellDef="let element"><img src="{{element.imgurl}}"> {{element.name}} </td>
+			  </ng-container>
+
+			  <!-- Score Column -->
+			  <ng-container matColumnDef="score">
+			    <th mat-header-cell *matHeaderCellDef> Nombre de caractères moyen </th>
+			    <td mat-cell *matCellDef="let element"> {{element.avgsize}} </td>
+			  </ng-container>
+
+			  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+			</table>
+		  </mat-card-content>
+		</mat-card>
+
+		
+	</div>
+  </mat-tab>
+  <mat-tab label="Stats globales"></mat-tab>
+  <mat-tab label="Stats par utilisateur"></mat-tab>
+</mat-tab-group>
