@@ -1,0 +1,12 @@
+Flask>=1.0.0
+gunicorn==19.9.0
+oauth2client==4.1.2
+six==1.11.0
+flask-cors
+fbchat
+redis
+celery
+flask_socketio
+eventlet
+emoji
+textblob-fr
