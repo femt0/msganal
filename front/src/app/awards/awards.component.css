@@ -1,0 +1,29 @@
+div.awards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
+  margin:10px;
+}
+
+.avatar {
+  font-size:40px;
+}
+
+.tabs {
+  position: fixed;
+}
+
+.award-table {
+	height:100%;
+	width:100%;
+}
+
+mat-card-content {
+	margin-top: 5px;
+}
+
+@media (max-width: 720px) {
+  div.awards {
+    grid-template-columns: 1fr;
+  }
+}
