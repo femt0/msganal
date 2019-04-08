@@ -20,7 +20,7 @@
 			  <!-- Name Column -->
 			  <ng-container matColumnDef="name">
 			    <th mat-header-cell *matHeaderCellDef> Nom </th>
-			    <td mat-cell *matCellDef="let element"><img src="{{element.imgurl}}"> {{element.name}} </td>
+			    <td mat-cell *matCellDef="let element"><img class="rounded-img" src="{{element.imgurl}}"> {{element.name}} </td>
 			  </ng-container>
 
 			  <!-- Score Column -->
@@ -54,7 +54,7 @@
 			  <!-- Name Column -->
 			  <ng-container matColumnDef="name">
 			    <th mat-header-cell *matHeaderCellDef> Nom </th>
-			    <td mat-cell *matCellDef="let element"><img src="{{element.imgurl}}"> {{element.name}} </td>
+			    <td mat-cell *matCellDef="let element"><img class="rounded-img" src="{{element.imgurl}}"> {{element.name}} </td>
 			  </ng-container>
 
 			  <!-- Score Column -->
@@ -88,7 +88,7 @@
 			  <!-- Name Column -->
 			  <ng-container matColumnDef="name">
 			    <th mat-header-cell *matHeaderCellDef> Nom </th>
-			    <td mat-cell *matCellDef="let element"><img src="{{element.imgurl}}"> {{element.name}} </td>
+			    <td mat-cell *matCellDef="let element"><img class="rounded-img" src="{{element.imgurl}}"> {{element.name}} </td>
 			  </ng-container>
 
 			  <!-- Score Column -->
@@ -122,7 +122,7 @@
 			  <!-- Name Column -->
 			  <ng-container matColumnDef="name">
 			    <th mat-header-cell *matHeaderCellDef> Nom </th>
-			    <td mat-cell *matCellDef="let element"><img src="{{element.imgurl}}"> {{element.name}} </td>
+			    <td mat-cell *matCellDef="let element"><img class="rounded-img" src="{{element.imgurl}}"> {{element.name}} </td>
 			  </ng-container>
 
 			  <!-- Score Column -->
@@ -143,7 +143,7 @@
 		  <mat-card-header>
 		    <div mat-card-avatar class="avatar">📚</div>
 		    <mat-card-title>Romancier Award</mat-card-title>
-		    <mat-card-subtitle>Nombre moyen de caractères pas message le plus grand</mat-card-subtitle>
+		    <mat-card-subtitle>Nombre moyen de caractères par message le plus grand</mat-card-subtitle>
 		  </mat-card-header>
 		  <mat-divider></mat-divider>
 		  <mat-card-content>
@@ -157,7 +157,7 @@
 			  <!-- Name Column -->
 			  <ng-container matColumnDef="name">
 			    <th mat-header-cell *matHeaderCellDef> Nom </th>
-			    <td mat-cell *matCellDef="let element"><img src="{{element.imgurl}}"> {{element.name}} </td>
+			    <td mat-cell *matCellDef="let element"><img class="rounded-img" src="{{element.imgurl}}"> {{element.name}} </td>
 			  </ng-container>
 
 			  <!-- Score Column -->
@@ -177,7 +177,7 @@
 		  <mat-card-header>
 		    <div mat-card-avatar class="avatar">⚡️</div>
 		    <mat-card-title>Flash Award</mat-card-title>
-		    <mat-card-subtitle>Nombre moyen de caractères pas message le plus petit</mat-card-subtitle>
+		    <mat-card-subtitle>Nombre moyen de caractères par message le plus petit</mat-card-subtitle>
 		  </mat-card-header>
 		  <mat-divider></mat-divider>
 		  <mat-card-content>
@@ -191,13 +191,149 @@
 			  <!-- Name Column -->
 			  <ng-container matColumnDef="name">
 			    <th mat-header-cell *matHeaderCellDef> Nom </th>
-			    <td mat-cell *matCellDef="let element"><img src="{{element.imgurl}}"> {{element.name}} </td>
+			    <td mat-cell *matCellDef="let element"><img class="rounded-img" src="{{element.imgurl}}"> {{element.name}} </td>
 			  </ng-container>
 
 			  <!-- Score Column -->
 			  <ng-container matColumnDef="score">
 			    <th mat-header-cell *matHeaderCellDef> Nombre de caractères moyen </th>
 			    <td mat-cell *matCellDef="let element"> {{element.avgsize}} </td>
+			  </ng-container>
+
+			  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+			</table>
+		  </mat-card-content>
+		</mat-card>
+
+		<mat-card class="award-card" *ngIf="topAvgSentiment">
+		  <mat-card-header>
+		    <div mat-card-avatar class="avatar">😊</div>
+		    <mat-card-title>Feel Good Award</mat-card-title>
+		    <mat-card-subtitle>Sentiment moyen le plus haut</mat-card-subtitle>
+		  </mat-card-header>
+		  <mat-divider></mat-divider>
+		  <mat-card-content>
+			<table mat-table [dataSource]="topAvgSentiment" class=".mat-elevation-z0 award-table">
+			  <!-- Position Column -->
+			  <ng-container matColumnDef="position">
+			    <th mat-header-cell *matHeaderCellDef> No. </th>
+			    <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+			  </ng-container>
+
+			  <!-- Name Column -->
+			  <ng-container matColumnDef="name">
+			    <th mat-header-cell *matHeaderCellDef> Nom </th>
+			    <td mat-cell *matCellDef="let element"><img class="rounded-img table-img" src="{{element.imgurl}}">{{element.name}}</td>
+			  </ng-container>
+
+			  <!-- Score Column -->
+			  <ng-container matColumnDef="score">
+			    <th mat-header-cell *matHeaderCellDef> Sentiment moyen </th>
+			    <td mat-cell *matCellDef="let element"> {{element.avgsentiment}} </td>
+			  </ng-container>
+
+			  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+			</table>
+		  </mat-card-content>
+		</mat-card>
+
+		<mat-card class="award-card" *ngIf="btmAvgSentiment">
+		  <mat-card-header>
+		    <div mat-card-avatar class="avatar">😔</div>
+		    <mat-card-title>Spleen Award</mat-card-title>
+		    <mat-card-subtitle>Sentiment moyen le plus bas</mat-card-subtitle>
+		  </mat-card-header>
+		  <mat-divider></mat-divider>
+		  <mat-card-content>
+			<table mat-table [dataSource]="btmAvgSentiment" class=".mat-elevation-z0 award-table">
+			  <!-- Position Column -->
+			  <ng-container matColumnDef="position">
+			    <th mat-header-cell *matHeaderCellDef> No. </th>
+			    <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+			  </ng-container>
+
+			  <!-- Name Column -->
+			  <ng-container matColumnDef="name">
+			    <th mat-header-cell *matHeaderCellDef> Nom </th>
+			    <td mat-cell *matCellDef="let element"><img class="rounded-img" src="{{element.imgurl}}"> {{element.name}} </td>
+			  </ng-container>
+
+			  <!-- Score Column -->
+			  <ng-container matColumnDef="score">
+			    <th mat-header-cell *matHeaderCellDef> Sentiment moyen </th>
+			    <td mat-cell *matCellDef="let element"> {{element.avgsentiment}} </td>
+			  </ng-container>
+
+			  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+			</table>
+		  </mat-card-content>
+		</mat-card>
+
+		<mat-card class="award-card" *ngIf="topTg">
+		  <mat-card-header>
+		    <div mat-card-avatar class="avatar">👊</div>
+		    <mat-card-title>Tg Award</mat-card-title>
+		    <mat-card-subtitle>Plus grand nombre d'occurences du mot 'tg'</mat-card-subtitle>
+		  </mat-card-header>
+		  <mat-divider></mat-divider>
+		  <mat-card-content>
+			<table mat-table [dataSource]="topTg" class=".mat-elevation-z0 award-table">
+			  <!-- Position Column -->
+			  <ng-container matColumnDef="position">
+			    <th mat-header-cell *matHeaderCellDef> No. </th>
+			    <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+			  </ng-container>
+
+			  <!-- Name Column -->
+			  <ng-container matColumnDef="name">
+			    <th mat-header-cell *matHeaderCellDef> Nom </th>
+			    <td mat-cell *matCellDef="let element"><img class="rounded-img" src="{{element.imgurl}}"> {{element.name}} </td>
+			  </ng-container>
+
+			  <!-- Score Column -->
+			  <ng-container matColumnDef="score">
+			    <th mat-header-cell *matHeaderCellDef> Nombre de 'tg' </th>
+			    <td mat-cell *matCellDef="let element"> {{element.words.tg}} </td>
+			  </ng-container>
+
+			  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+			</table>
+		  </mat-card-content>
+		</mat-card>
+
+		<mat-card class="award-card" *ngIf="topGodwin">
+		  <mat-card-header>
+		    <div mat-card-avatar class="avatar">⛔️</div>
+		    <mat-card-title>Godwin Award</mat-card-title>
+		    <mat-card-subtitle>Plus grand nombre d'occurences des mots 'hitler', 'nazi' et 'race'</mat-card-subtitle>
+		  </mat-card-header>
+		  <mat-divider></mat-divider>
+		  <mat-card-content>
+			<table mat-table [dataSource]="topGodwin" class=".mat-elevation-z0 award-table">
+			  <!-- Position Column -->
+			  <ng-container matColumnDef="position">
+			    <th mat-header-cell *matHeaderCellDef> No. </th>
+			    <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+			  </ng-container>
+
+			  <!-- Name Column -->
+			  <ng-container matColumnDef="name">
+			    <th mat-header-cell *matHeaderCellDef> Nom </th>
+			    <td mat-cell *matCellDef="let element"><img class="rounded-img" src="{{element.imgurl}}"> {{element.name}} </td>
+			  </ng-container>
+
+			  <!-- Score Column -->
+			  <ng-container matColumnDef="score">
+			    <th mat-header-cell *matHeaderCellDef> Total </th>
+			    <td mat-cell *matCellDef="let element"> {{element.words.hitler + element.words.nazi + element.words.race}} </td>
 			  </ng-container>
 
 			  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -13,9 +13,30 @@ div.awards {
   position: fixed;
 }
 
+td img {
+  vertical-align:middle;
+  margin-right: 5px;
+}
+
 .award-table {
 	height:100%;
 	width:100%;
+}
+
+.mat-card-content {
+	margin-top:0;
+}
+
+.mat-card {
+	padding-bottom:0;
+}
+
+tr.mat-footer-row, tr.mat-row {
+	height:56px;
+}
+
+tr:last-child td {
+	border-bottom:0
 }
 
 mat-card-content {
