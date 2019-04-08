@@ -25,36 +25,43 @@ export class AwardsComponent implements OnInit {
   constructor(private rest: RestService) { }
 
   getTop(data, prop, nb) {
-  	return data.sort(function(a, b) { return a[prop] < b[prop] ? 1 : -1; }).slice(0, nb);
+  	return data.slice().sort(function(a, b) { return a[prop] < b[prop] ? 1 : -1; });
   }
 
   getBottom(data, prop, nb) {
-  	return data.sort(function(a, b) { return a[prop] > b[prop] ? 1 : -1; }).slice(0, nb);
+  	return data.slice().sort(function(a, b) { return a[prop] > b[prop] ? 1 : -1; });
+  }
+
+  getTg(data, nb) {
+    return data.slice().sort(
+      function(a, b) { 
+        return a['words']['tg'] < b['words']['tg'] ? 1 : -1; 
+      }
+    );
   }
 
   getGodwin(data, nb) {
-  	return data.sort(
+  	return data.slice().sort(
   		function(a, b) { 
   			return (a['words']['race'] + a['words']['hitler'] + a['words']['nazi']) 
   				< (b['words']['race'] + b['words']['hitler'] + b['words']['nazi']) ? 1 : -1; 
   		}
-  	).slice(0, nb);
+  	);
   }
 
   ngOnInit() {
 	this.rest.getUsers()
     .subscribe(res => {
       this.users = res['users'];
-      this.topMsg = this.getTop(this.users, 'ctnmsg', 3);
-      console.log(this.topMsg);
+      this.topMsg = this.getTop(this.users, 'cntmsg', 3);
       this.topImg = this.getTop(this.users, 'cntimg', 3);
   	  this.topEmj = this.getTop(this.users, 'cntemj', 3);
-  	  this.topStk = this.getTop(this.users, 'cntStk', 3);
+  	  this.topStk = this.getTop(this.users, 'cntstk', 3);
   	  this.topAvgSize = this.getTop(this.users, 'avgsize', 3);
   	  this.btmAvgSize = this.getBottom(this.users, 'avgsize', 3);
   	  this.topAvgSentiment = this.getTop(this.users, 'avgsentiment', 3);
   	  this.btmAvgSentiment = this.getBottom(this.users, 'avgsentiment', 3);
-  	  this.topTg = this.getTop(this.users, 'words.tg', 3);
+  	  this.topTg = this.getTg(this.users, 3);
   	  this.topGodwin = this.getGodwin(this.users, 3);
     }, err => {
       console.log(err);

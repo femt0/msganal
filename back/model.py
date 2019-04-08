@@ -140,7 +140,7 @@ def get_user(userid):
 	user['cntemj'] = get_int('user:{}:cntemj'.format(userid))
 	user['cntstk'] = get_int('user:{}:cntstk'.format(userid))
 	user['avgsize'] = get_float('user:{}:avgsize'.format(userid))
-	user['avgpolarity'] = get_float('user:{}:avgpolarity'.format(userid))
+	user['avgsentiment'] = get_float('user:{}:avgpolarity'.format(userid))
 	user['emojis'] = get_top3('user:{}:emojis'.format(userid))
 	user['stickers'] = get_top3('user:{}:stickers'.format(userid))
 	user['words'] = get_words(userid)

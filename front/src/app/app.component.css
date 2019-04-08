@@ -13,3 +13,7 @@
 h1 {
 	margin-left: 10px;
 }
+
+img {
+	max-width:40px;
+}

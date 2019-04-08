@@ -3,7 +3,7 @@ SECRET_KEY = 'mysecretkey'
 
 MESSENGER_USERNAME = 'eliott.benoit@club-internet.fr'
 MESSENGER_PASSWORD = '***REMOVED***'
-THREAD_ID = '1312983893'
+THREAD_ID = '389598907883325'
 
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
