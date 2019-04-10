@@ -1,13 +1,13 @@
 <mat-tab-group>
   <!-- AWARDS -->
   <mat-tab label="Awards">
-	<div class="cards">
+	<div class="award-cards">
 
 		<mat-card class="award-card" *ngIf="topMsg">
 		  <mat-card-header>
-		    <div mat-card-avatar class="avatar gold"></div>
+		    <div mat-card-avatar class="avatar">🏆</div>
 		    <mat-card-title>Golden Award</mat-card-title>
-		    <mat-card-subtitle>Plus grand nombre de messages🏆</mat-card-subtitle>
+		    <mat-card-subtitle>Plus grand nombre de messages</mat-card-subtitle>
 		  </mat-card-header>
 		  <mat-divider></mat-divider>
 		  <mat-card-content>
@@ -349,21 +349,68 @@
 
   <!-- GLOBAL -->
   <mat-tab label="Stats globales">
-  	<div class="cards">
+	<div class="stat-cards">
 
   		<mat-card class="award-card" *ngIf="global">
 		  <mat-card-header>
-		    <mat-card-title>Nombre de messages</mat-card-title>
+		    <mat-card-subtitle>Nombre de messages</mat-card-subtitle>
 		  </mat-card-header>
-		  <mat-divider></mat-divider>
 		  <mat-card-content>
-			<h2>{{global.cntmsg}}</h2>
+			<div class="bigstat">{{global.cntmsg}}</div>
 		  </mat-card-content>
 		</mat-card>
 
+		<mat-card class="award-card" *ngIf="global">
+		  <mat-card-header>
+		    <mat-card-subtitle>Nombre d'images</mat-card-subtitle>
+		  </mat-card-header>
+		  <mat-card-content>
+			<div class="bigstat">{{global.cntimg}}</div>
+		  </mat-card-content>
+		</mat-card>
+
+		<mat-card class="award-card" *ngIf="global">
+		  <mat-card-header>
+		    <mat-card-subtitle>Nombre de stickers</mat-card-subtitle>
+		  </mat-card-header>
+		  <mat-card-content>
+			<div class="bigstat">{{global.cntstk}}</div>
+		  </mat-card-content>
+		</mat-card>
+
+		<mat-card class="award-card" *ngIf="global">
+		  <mat-card-header>
+		    <mat-card-subtitle>Nombre d'emojis</mat-card-subtitle>
+		  </mat-card-header>
+		  <mat-card-content>
+			<div class="bigstat">{{global.cntemj}}</div>
+		  </mat-card-content>
+		</mat-card>
+
+		<mat-card class="award-card" *ngIf="global">
+		  <mat-card-header>
+		    <mat-card-subtitle>Nombre de caractères moyen par message</mat-card-subtitle>
+		  </mat-card-header>
+		  <mat-card-content>
+			<div class="bigstat">{{global.avgsize}}</div>
+		  </mat-card-content>
+		</mat-card>
+
+		<mat-card class="award-card" *ngIf="global">
+		  <mat-card-header>
+		    <mat-card-subtitle>Sentiment moyen</mat-card-subtitle>
+		  </mat-card-header>
+		  <mat-card-content>
+			<div class="bigstat">{{global.avgsentiment}}</div>
+		  </mat-card-content>
+		</mat-card>
+
+
   	</div>
+
+
   </mat-tab>
 
   <!-- USERS -->
-  <mat-tab label="Stats par utilisateur"></mat-tab>
+  <mat-tab label="Stats perso"></mat-tab>
 </mat-tab-group>

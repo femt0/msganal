@@ -1,20 +1,39 @@
-div.cards {
+.award-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 15px;
   margin:10px;
 }
 
+.stat-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15px;
+  margin:10px;
+}
+
+@media (max-width: 720px) {
+  .award-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+@media (max-width: 720px) {
+  .stat-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
 .avatar {
   font-size:40px;
 }
 
-.gold {
-  background-image: url('https://editorial.azureedge.net/images/Markets/Commodities/Metals/Gold/gold-nuggets-7636265_Large.jpg');
-  background-size: cover;
+.bigstat {
+    font-size:50px;
+    margin:16px 16px;
 }
-
-
 
 .tabs {
   position: fixed;
@@ -50,8 +69,4 @@ mat-card-content {
   margin-top: 5px;
 }
 
-@media (max-width: 720px) {
-  div.cards {
-    grid-template-columns: 1fr;
-  }
-}
+
