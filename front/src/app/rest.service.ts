@@ -21,4 +21,16 @@ export class RestService {
   getStickers() {
     return this.http.get(apiUrl + 'stickers');
   }
+
+  postScan() {
+    return this.http.post(apiUrl + 'fullscan');
+  }
+
+  postStart() {
+    return this.http.post(apiUrl + 'start');
+  }
+
+  postStop() {
+    return this.http.post(apiUrl + 'stop');
+  }
 }

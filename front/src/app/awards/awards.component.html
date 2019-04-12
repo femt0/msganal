@@ -36,7 +36,7 @@
 			</table>
 		  </mat-card-content>
 		</mat-card>
-		
+
 		<mat-card class="award-card" *ngIf="topImg">
 		  <mat-card-header>
 		    <div mat-card-avatar class="avatar">📷</div>
@@ -70,7 +70,7 @@
 			</table>
 		  </mat-card-content>
 		</mat-card>
-		
+
 		<mat-card class="award-card" *ngIf="topStk">
 		  <mat-card-header>
 		    <div mat-card-avatar class="avatar">🌅</div>
@@ -138,8 +138,8 @@
 			</table>
 		  </mat-card-content>
 		</mat-card>
-		
-		
+
+
 		<mat-card class="award-card" *ngIf="topAvgSize">
 		  <mat-card-header>
 		    <div mat-card-avatar class="avatar">📚</div>
@@ -173,7 +173,7 @@
 			</table>
 		  </mat-card-content>
 		</mat-card>
-		
+
 		<mat-card class="award-card" *ngIf="btmAvgSize">
 		  <mat-card-header>
 		    <div mat-card-avatar class="avatar">⚡️</div>
@@ -349,68 +349,128 @@
 
   <!-- GLOBAL -->
   <mat-tab label="Stats globales">
-	<div class="stat-cards">
+  	<div class="stat-cards">
+    		<mat-card class="award-card" *ngIf="global">
+  		  <mat-card-header>
+  		    <mat-card-subtitle>Nombre de messages</mat-card-subtitle>
+  		  </mat-card-header>
+  		  <mat-card-content>
+  			<div class="bigstat">{{global.cntmsg}}</div>
+  		  </mat-card-content>
+  		</mat-card>
 
   		<mat-card class="award-card" *ngIf="global">
-		  <mat-card-header>
-		    <mat-card-subtitle>Nombre de messages</mat-card-subtitle>
-		  </mat-card-header>
-		  <mat-card-content>
-			<div class="bigstat">{{global.cntmsg}}</div>
-		  </mat-card-content>
-		</mat-card>
+  		  <mat-card-header>
+  		    <mat-card-subtitle>Nombre d'images</mat-card-subtitle>
+  		  </mat-card-header>
+  		  <mat-card-content>
+  			<div class="bigstat">{{global.cntimg}}</div>
+  		  </mat-card-content>
+  		</mat-card>
 
-		<mat-card class="award-card" *ngIf="global">
-		  <mat-card-header>
-		    <mat-card-subtitle>Nombre d'images</mat-card-subtitle>
-		  </mat-card-header>
-		  <mat-card-content>
-			<div class="bigstat">{{global.cntimg}}</div>
-		  </mat-card-content>
-		</mat-card>
+  		<mat-card class="award-card" *ngIf="global">
+  		  <mat-card-header>
+  		    <mat-card-subtitle>Nombre de stickers</mat-card-subtitle>
+  		  </mat-card-header>
+  		  <mat-card-content>
+  			<div class="bigstat">{{global.cntstk}}</div>
+  		  </mat-card-content>
+  		</mat-card>
 
-		<mat-card class="award-card" *ngIf="global">
-		  <mat-card-header>
-		    <mat-card-subtitle>Nombre de stickers</mat-card-subtitle>
-		  </mat-card-header>
-		  <mat-card-content>
-			<div class="bigstat">{{global.cntstk}}</div>
-		  </mat-card-content>
-		</mat-card>
+  		<mat-card class="award-card" *ngIf="global">
+  		  <mat-card-header>
+  		    <mat-card-subtitle>Nombre d'emojis</mat-card-subtitle>
+  		  </mat-card-header>
+  		  <mat-card-content>
+  			<div class="bigstat">{{global.cntemj}}</div>
+  		  </mat-card-content>
+  		</mat-card>
 
-		<mat-card class="award-card" *ngIf="global">
-		  <mat-card-header>
-		    <mat-card-subtitle>Nombre d'emojis</mat-card-subtitle>
-		  </mat-card-header>
-		  <mat-card-content>
-			<div class="bigstat">{{global.cntemj}}</div>
-		  </mat-card-content>
-		</mat-card>
+  		<mat-card class="award-card" *ngIf="global">
+  		  <mat-card-header>
+  		    <mat-card-subtitle>Nombre de caractères moyen par message</mat-card-subtitle>
+  		  </mat-card-header>
+  		  <mat-card-content>
+  			<div class="bigstat">{{global.avgsize}}</div>
+  		  </mat-card-content>
+  		</mat-card>
 
-		<mat-card class="award-card" *ngIf="global">
-		  <mat-card-header>
-		    <mat-card-subtitle>Nombre de caractères moyen par message</mat-card-subtitle>
-		  </mat-card-header>
-		  <mat-card-content>
-			<div class="bigstat">{{global.avgsize}}</div>
-		  </mat-card-content>
-		</mat-card>
-
-		<mat-card class="award-card" *ngIf="global">
-		  <mat-card-header>
-		    <mat-card-subtitle>Sentiment moyen</mat-card-subtitle>
-		  </mat-card-header>
-		  <mat-card-content>
-			<div class="bigstat">{{global.avgsentiment}}</div>
-		  </mat-card-content>
-		</mat-card>
-
-
+  		<mat-card class="award-card" *ngIf="global">
+  		  <mat-card-header>
+  		    <mat-card-subtitle>Sentiment moyen</mat-card-subtitle>
+  		  </mat-card-header>
+  		  <mat-card-content>
+  			<div class="bigstat">{{global.avgsentiment}}</div>
+  		  </mat-card-content>
+  		</mat-card>
   	</div>
-
-
   </mat-tab>
 
   <!-- USERS -->
-  <mat-tab label="Stats perso"></mat-tab>
+  <mat-tab label="Stats perso">
+    <mat-form-field>
+      <mat-select [(ngModel)]="selectedUser" name="user">
+        <mat-option *ngFor="let user of users" [value]="user.id">
+          {{user.name}}
+          <img with="10" height="10" src="{{user.imgurl}}">
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="stat-cards">
+    		<mat-card class="award-card" *ngIf="selectedUser">
+  		  <mat-card-header>
+  		    <mat-card-subtitle>Nombre de messages</mat-card-subtitle>
+  		  </mat-card-header>
+  		  <mat-card-content>
+  			<div class="bigstat">{{selectedUser.cntmsg}}</div>
+  		  </mat-card-content>
+  		</mat-card>
+
+  		<mat-card class="award-card" *ngIf="selectedUser">
+  		  <mat-card-header>
+  		    <mat-card-subtitle>Nombre d'images</mat-card-subtitle>
+  		  </mat-card-header>
+  		  <mat-card-content>
+  			<div class="bigstat">{{selectedUser.cntimg}}</div>
+  		  </mat-card-content>
+  		</mat-card>
+
+  		<mat-card class="award-card" *ngIf="selectedUser">
+  		  <mat-card-header>
+  		    <mat-card-subtitle>Nombre de stickers</mat-card-subtitle>
+  		  </mat-card-header>
+  		  <mat-card-content>
+  			<div class="bigstat">{{selectedUser.cntstk}}</div>
+  		  </mat-card-content>
+  		</mat-card>
+
+  		<mat-card class="award-card" *ngIf="selectedUser">
+  		  <mat-card-header>
+  		    <mat-card-subtitle>Nombre d'emojis</mat-card-subtitle>
+  		  </mat-card-header>
+  		  <mat-card-content>
+  			<div class="bigstat">{{selectedUser.cntemj}}</div>
+  		  </mat-card-content>
+  		</mat-card>
+
+  		<mat-card class="award-card" *ngIf="selectedUser">
+  		  <mat-card-header>
+  		    <mat-card-subtitle>Nombre de caractères moyen par message</mat-card-subtitle>
+  		  </mat-card-header>
+  		  <mat-card-content>
+  			<div class="bigstat">{{selectedUser.avgsize}}</div>
+  		  </mat-card-content>
+  		</mat-card>
+
+  		<mat-card class="award-card" *ngIf="selectedUser">
+  		  <mat-card-header>
+  		    <mat-card-subtitle>Sentiment moyen</mat-card-subtitle>
+  		  </mat-card-header>
+  		  <mat-card-content>
+  			<div class="bigstat">{{selectedUser.avgsentiment}}</div>
+  		  </mat-card-content>
+  		</mat-card>
+  	</div>
+  </mat-tab>
 </mat-tab-group>
