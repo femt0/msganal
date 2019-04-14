@@ -40,10 +40,11 @@ def update_user_words(userid, words):
 
 def update_user_stickers(userid, sticker):
 	r.incr('user:{}:cntstk'.format(userid))
-	r.zincrby('user:{}:stickers'.format(userid), 1, sticker.uid)
-	exists = r.sadd('stickers', sticker.uid)
-	if not exists:
-		r.set('sticker:{}:imgurl'.format(sticker.uid), sticker.url)
+	if sticker.uid not in config.THUMB_STICKERS:
+		r.zincrby('user:{}:stickers'.format(userid), 1, sticker.uid)
+		exists = r.sadd('stickers', sticker.uid)
+		if not exists:
+			r.set('sticker:{}:imgurl'.format(sticker.uid), sticker.url)
 
 def update_user_average_size(userid, size, diff=-1):
 	avgsize = r.get('user:{}:avgsize'.format(userid))
@@ -118,12 +119,20 @@ def get_words(userid):
 			words[w] = 0
 	return words
 
-def get_top3(key):
-	dictops = {}
-	listops = r.zrange(key, 0, 2, desc=True, withscores=True, score_cast_func=int)
-	for t in listops:
-		dictops[t[0]] = t[1]
-	return dictops
+def get_top3_emojis(key):
+	result = []
+	tops = r.zrange(key, 0, 2, desc=True, withscores=True, score_cast_func=int)
+	for t in tops:
+		result.append(t)
+	return result
+
+def get_top3_stickers(key):
+	result = []
+	tops = r.zrange(key, 0, 2, desc=True, withscores=True, score_cast_func=int)
+	for t in tops:
+		t2 = t + (r.get('sticker:{}:imgurl'.format(t[0])),)
+		result.append(t2)
+	return result
 
 def get_user(userid):
 	if not r.sismember('users', userid):
@@ -141,8 +150,8 @@ def get_user(userid):
 	user['cntstk'] = get_int('user:{}:cntstk'.format(userid))
 	user['avgsize'] = get_float('user:{}:avgsize'.format(userid))
 	user['avgsentiment'] = get_float('user:{}:avgpolarity'.format(userid))
-	user['emojis'] = get_top3('user:{}:emojis'.format(userid))
-	user['stickers'] = get_top3('user:{}:stickers'.format(userid))
+	user['emojis'] = get_top3_emojis('user:{}:emojis'.format(userid))
+	user['stickers'] = get_top3_stickers('user:{}:stickers'.format(userid))
 	user['words'] = get_words(userid)
 	user['hours'] = get_hours(userid)
 	user['days'] = get_days(userid)
@@ -175,10 +184,10 @@ def get_sticker(stickerid):
 
 def get_stickers():
 	stickerids = r.smembers('stickers')
-	stickers = []
+	stickers = {}
 	for stickerid in stickerids:
 		try:
-			stickers.append(get_sticker(stickerid))
+			stickers[stickerid] = get_sticker(stickerid)
 		except:
 			pass
 			#log.warn('sticker {} doesn\'t exists', stickerid)

@@ -4,12 +4,14 @@ import { RestService } from '../rest.service';
 @Component({
   selector: 'app-awards',
   templateUrl: './awards.component.html',
-  styleUrls: ['./awards.component.css']
+  styleUrls: ['./awards.component.css'],
 })
 export class AwardsComponent implements OnInit {
 
   users;
-  global;
+  selectedUser;
+  globalUser;
+  stickers;
   topMsg;
   topImg;
   topEmj;
@@ -66,6 +68,11 @@ export class AwardsComponent implements OnInit {
     this.rest.getUsers()
       .subscribe(res => {
         this.users = res['users'];
+        this.users.sort(
+        function(a, b) { 
+          return a['name'] > b['name'] ? 1 : -1; 
+        });
+        this.selectedUser = this.users[0];
         this.topMsg = this.getTop(this.users, 'cntmsg', 3);
         this.topImg = this.getTop(this.users, 'cntimg', 3);
         this.topEmj = this.getTop(this.users, 'cntemj', 3);
@@ -82,7 +89,14 @@ export class AwardsComponent implements OnInit {
     
     this.rest.getGlobal()
       .subscribe(res => {
-        this.global = res['user'];
+        this.globalUser = res['user'];
+      }, err => {
+        console.log(err);
+      });
+
+    this.rest.getStickers()
+      .subscribe(res => {
+        this.stickers = res['stickers'];
       }, err => {
         console.log(err);
       });

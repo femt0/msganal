@@ -23,14 +23,14 @@ export class RestService {
   }
 
   postScan() {
-    return this.http.post(apiUrl + 'fullscan');
+    return this.http.post(apiUrl + 'fullscan', null);
   }
 
   postStart() {
-    return this.http.post(apiUrl + 'start');
+    return this.http.post(apiUrl + 'start', null);
   }
 
   postStop() {
-    return this.http.post(apiUrl + 'stop');
+    return this.http.post(apiUrl + 'stop', null);
   }
 }

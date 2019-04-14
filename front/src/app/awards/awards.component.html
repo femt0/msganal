@@ -350,69 +350,138 @@
   <!-- GLOBAL -->
   <mat-tab label="Stats globales">
   	<div class="stat-cards">
-    		<mat-card class="award-card" *ngIf="global">
+    		<mat-card class="award-card" *ngIf="globalUser">
   		  <mat-card-header>
   		    <mat-card-subtitle>Nombre de messages</mat-card-subtitle>
   		  </mat-card-header>
   		  <mat-card-content>
-  			<div class="bigstat">{{global.cntmsg}}</div>
+  			<div class="bigstat">{{globalUser.cntmsg}}</div>
   		  </mat-card-content>
   		</mat-card>
 
-  		<mat-card class="award-card" *ngIf="global">
+  		<mat-card class="award-card" *ngIf="globalUser">
   		  <mat-card-header>
   		    <mat-card-subtitle>Nombre d'images</mat-card-subtitle>
   		  </mat-card-header>
   		  <mat-card-content>
-  			<div class="bigstat">{{global.cntimg}}</div>
+  			<div class="bigstat">{{globalUser.cntimg}}</div>
   		  </mat-card-content>
   		</mat-card>
 
-  		<mat-card class="award-card" *ngIf="global">
+  		<mat-card class="award-card" *ngIf="globalUser">
   		  <mat-card-header>
   		    <mat-card-subtitle>Nombre de stickers</mat-card-subtitle>
   		  </mat-card-header>
   		  <mat-card-content>
-  			<div class="bigstat">{{global.cntstk}}</div>
+  			<div class="bigstat">{{globalUser.cntstk}}</div>
   		  </mat-card-content>
   		</mat-card>
 
-  		<mat-card class="award-card" *ngIf="global">
+  		<mat-card class="award-card" *ngIf="globalUser">
   		  <mat-card-header>
   		    <mat-card-subtitle>Nombre d'emojis</mat-card-subtitle>
   		  </mat-card-header>
   		  <mat-card-content>
-  			<div class="bigstat">{{global.cntemj}}</div>
+  			<div class="bigstat">{{globalUser.cntemj}}</div>
   		  </mat-card-content>
   		</mat-card>
 
-  		<mat-card class="award-card" *ngIf="global">
+  		<mat-card class="award-card" *ngIf="globalUser">
   		  <mat-card-header>
   		    <mat-card-subtitle>Nombre de caractères moyen par message</mat-card-subtitle>
   		  </mat-card-header>
   		  <mat-card-content>
-  			<div class="bigstat">{{global.avgsize}}</div>
+  			<div class="bigstat">{{globalUser.avgsize}}</div>
   		  </mat-card-content>
   		</mat-card>
 
-  		<mat-card class="award-card" *ngIf="global">
+  		<mat-card class="award-card" *ngIf="globalUser">
   		  <mat-card-header>
   		    <mat-card-subtitle>Sentiment moyen</mat-card-subtitle>
   		  </mat-card-header>
   		  <mat-card-content>
-  			<div class="bigstat">{{global.avgsentiment}}</div>
+  			<div class="bigstat">{{globalUser.avgsentiment}}</div>
   		  </mat-card-content>
   		</mat-card>
+
+  		<mat-card class="award-card" *ngIf="globalUser && globalUser.emojis">
+		  <mat-card-header>
+		    <mat-card-subtitle>Emojis les plus utilisés</mat-card-subtitle>
+		  </mat-card-header>
+		  <mat-divider></mat-divider>
+		  <mat-card-content>
+			<table mat-table [dataSource]="globalUser.emojis" class=".mat-elevation-z0 award-table">
+			  <!-- Position Column -->
+			  <ng-container matColumnDef="position">
+			    <th mat-header-cell *matHeaderCellDef> No. </th>
+			    <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+			  </ng-container>
+
+			  <!-- Name Column -->
+			  <ng-container matColumnDef="name">
+			    <th mat-header-cell *matHeaderCellDef> Nom </th>
+			    <td mat-cell *matCellDef="let element" class="emoji">{{element[0]}} </td>
+			  </ng-container>
+
+			  <!-- Score Column -->
+			  <ng-container matColumnDef="score">
+			    <th mat-header-cell *matHeaderCellDef> Total </th>
+			    <td mat-cell *matCellDef="let element"> {{element[1]}} </td>
+			  </ng-container>
+
+			  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+			</table>
+		  </mat-card-content>
+		</mat-card>
+
+		<mat-card class="award-card" *ngIf="globalUser && globalUser.stickers">
+		  <mat-card-header>
+		    <mat-card-subtitle>Emojis les plus utilisés</mat-card-subtitle>
+		  </mat-card-header>
+		  <mat-divider></mat-divider>
+		  <mat-card-content>
+			<table mat-table [dataSource]="globalUser.stickers" class=".mat-elevation-z0 award-table">
+			  <!-- Position Column -->
+			  <ng-container matColumnDef="position">
+			    <th mat-header-cell *matHeaderCellDef> No. </th>
+			    <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+			  </ng-container>
+
+			  <!-- Name Column -->
+			  <ng-container matColumnDef="name">
+			    <th mat-header-cell *matHeaderCellDef> Nom </th>
+			    <td mat-cell *matCellDef="let element"><img src="{{element[2]}}" class="sticker"/></td>
+			  </ng-container>
+
+			  <!-- Score Column -->
+			  <ng-container matColumnDef="score">
+			    <th mat-header-cell *matHeaderCellDef> Total </th>
+			    <td mat-cell *matCellDef="let element"> {{element[1]}} </td>
+			  </ng-container>
+
+			  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+			</table>
+		  </mat-card-content>
+		</mat-card>
+
   	</div>
   </mat-tab>
 
   <!-- USERS -->
   <mat-tab label="Stats perso">
     <mat-form-field>
-      <mat-select [(ngModel)]="selectedUser" name="user">
-        <mat-option *ngFor="let user of users" [value]="user.id">
+      <mat-select [(ngModel)]="selectedUser">
+      	<mat-select-trigger>
+		  <img class="rounded-img select-img" src="{{selectedUser.imgurl}}">
+		  {{selectedUser.name}}
+      	</mat-select-trigger>
+        <mat-option *ngFor="let user of users" [value]="user">
+          <img class="rounded-img select-img" src="{{user.imgurl}}">
           {{user.name}}
-          <img with="10" height="10" src="{{user.imgurl}}">
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -471,6 +540,38 @@
   			<div class="bigstat">{{selectedUser.avgsentiment}}</div>
   		  </mat-card-content>
   		</mat-card>
+
+		<mat-card class="award-card" *ngIf="selectedUser && selectedUser.emojis">
+		  <mat-card-header>
+		    <mat-card-subtitle>Stickers les plus utilisés</mat-card-subtitle>
+		  </mat-card-header>
+		  <mat-divider></mat-divider>
+		  <mat-card-content>
+			<table mat-table [dataSource]="selectedUser.emojis" class=".mat-elevation-z0 award-table">
+			  <!-- Position Column -->
+			  <ng-container matColumnDef="position">
+			    <th mat-header-cell *matHeaderCellDef> No. </th>
+			    <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+			  </ng-container>
+
+			  <!-- Name Column -->
+			  <ng-container matColumnDef="name">
+			    <th mat-header-cell *matHeaderCellDef> Nom </th>
+			    <td mat-cell *matCellDef="let element" class="emoji">{{element[0]}} </td>
+			  </ng-container>
+
+			  <!-- Score Column -->
+			  <ng-container matColumnDef="score">
+			    <th mat-header-cell *matHeaderCellDef> Total </th>
+			    <td mat-cell *matCellDef="let element"> {{element[1]}} </td>
+			  </ng-container>
+
+			  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+			</table>
+		  </mat-card-content>
+		</mat-card>
   	</div>
   </mat-tab>
 </mat-tab-group>

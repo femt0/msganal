@@ -8,7 +8,7 @@ import { RestService } from './rest.service';
 })
 export class AppComponent {
   
-  global;
+  globaluser;
   title;
 
   constructor(private rest: RestService) { }
@@ -16,9 +16,9 @@ export class AppComponent {
   ngOnInit() {
 	this.rest.getGlobal()
     .subscribe(res => {
-      this.global = res['user']
-      console.log(this.global)
-      this.title = this.global.name
+      this.globaluser = res['user']
+      console.log(this.globaluser)
+      this.title = this.globaluser.name
     }, err => {
       console.log(err);
     });
