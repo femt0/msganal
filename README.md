@@ -7,6 +7,6 @@ Angular / Material
 Python / Flask / SocketIO / Redis / Celery
 
 ## TODO 
-User guide
-AppEngine configuration
-Migrate Celery to Cloud Tasks : https://cloud.google.com/tasks/
+User guide   
+AppEngine configuration   
+Migrate Celery to Cloud Tasks : https://cloud.google.com/tasks/   
